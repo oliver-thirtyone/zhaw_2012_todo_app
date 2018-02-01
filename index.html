@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="A todo-list that saves your tasks in the local storage">
+		<meta name="author" content="Oliver Streuli">
+
+		<title>TODO List</title>
+		<link rel="shortcut icon" href="img/favicon.png">
+
+		<link href="css/smoothness/jquery-ui-1.8.21.css" rel="stylesheet" />
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+		<link href="css/todo_list.css" rel="stylesheet">
+	</head>
+
+	<body>
+		<div class="container">
+			<ul class="nav nav-tabs" id="navigation">
+				<li class="active"><a href="#home">Home</a></li>
+				<li><a href="#about">About</a></li>
+				<li><a href="#contact">Contact</a></li>
+			</ul>
+
+			<div class="tab-content span8">
+
+				<div class="tab-pane active" id="home">
+					<h1>TODO List</h1>
+						<form class="well form-inline">
+							<input type="text" class="input span2" required="required" id="form_input_title" placeholder="Title">
+							<select class="span2" name="priority" id="form_select_priority" required="required">
+								<option value="high">high priority</option>
+								<option value="medium" selected="selected">medium priority</option>
+								<option value="low">low priority</option>
+							</select>
+							<input type="text" class="input span2" required="required" id="form_input_date" placeholder="Date">
+							<button type="submit" class="btn btn-primary" id="form_button_create">Create task</button>
+							<button type="reset" class="btn">Reset</button>
+							<br />
+							<textarea class="input-xlarge span7" rows="5" id="form_textarea_description" placeholder="Description"></textarea>
+						</form>
+
+						<div class="contentBox border">
+							<h1>Todo</h1>
+							<div id="taskListTodo"> </div>
+						</div>
+						<div class="contentBox border">
+							<h1>Done</h1>
+							<div id="taskListDone"> </div>
+						</div>
+				</div>
+
+				<div class="tab-pane" id="about">
+					<h1>About</h1>
+					<p>The todo-list will be stored in your browsers local storage. It will still be avaiable after you close your browser, but you're currently not able to share your list between different devices.</p>
+
+					<h2>Technologies</h2>
+					<ul>
+						<li>Twitter Bootstrap: <a href="http://twitter.github.com/bootstrap/" target="_blank">http://twitter.github.com/bootstrap/</a></li>
+						<li>jQuery: <a href="http://jquery.com/" target="_blank">http://jquery.com</a></li>
+						<li>jQuery UI: <a href="http://jqueryui.com/" target="_blank">http://jqueryui.com</a></li>
+						<li>JsRender: <a href="https://github.com/BorisMoore/jsrender/" target="_blank">https://github.com/BorisMoore/jsrender</a></li>
+					</ul>
+				</div>
+
+				<div class="tab-pane" id="contact">
+					<h1>Contact</h1>
+					Oliver Streuli<br />
+					Website: <a href="http://www.oliverstreuli.ch" target="_blank">www.oliverstreuli.ch</a><br />
+					E-Mail:
+					<script language='javascript' type='text/javascript'>
+						var a = new Array('&#105;&#46;&#99;&#104;','&#116;&#114;&#101;&#117;&#108;','&#x6d;&#x61;&#x69;&#x6c;&#x74;','&#x6f;&#x3a;&#x65;&#x6d;&#x61;','&#105;&#108;&#64;&#111;&#108;','&#105;&#118;&#101;&#114;&#115;');
+						document.write("<a href='"+a[2]+a[3]+a[4]+a[5]+a[1]+a[0]+"'>"+"&#x65;&#x6d;&#x61;&#x69;&#x6c;&#x40;&#x6f;&#x6c;&#x69;&#x76;&#x65;&#x72;&#x73;&#x74;&#x72;&#x65;&#x75;&#x6c;&#x69;&#x2e;&#x63;&#x68;"+"<"+"/a>");
+					</script>
+				</div>
+
+			</div>
+		</div>
+
+		<script id="taskTemplate" type="text/x-jsrender">
+			<div class="task border">
+				<span class="taskTitle">{{:title}}</span>
+				{{if done}}
+				<a class="taskDone btn btn-mini btn-danger" onclick="deleteTask('{{:id}}')" href="">
+					<i class="icon-remove icon-white"></i>
+				</a>
+				{{else}}
+				<a class="taskDone btn btn-mini btn-success" onclick="completeTask('{{:id}}')" href="">
+					<i class="icon-ok icon-white"></i>
+				</a>
+				{{/if}}
+				<span class="taskDate">{{:date}}</span>
+				<span class="taskPriority">{{:priority}}</span>
+				<pre class="taskDescription">{{:description}}</pre>
+			</div>
+		</script>
+
+		<script src="js/jquery-1.7.2.min.js"></script>
+		<script src="js/jquery-ui-1.8.21.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/bootstrap-tab.js"></script>
+		<script src="js/jsrender.js"></script>
+		<script src="js/todo_list.js"></script>
+	</body>
+
+</html>
